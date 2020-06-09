@@ -1,0 +1,28 @@
+#formularios {
+    margin: 300px auto;
+    border: 1px solid #000;
+    height: 10%;
+    width: 20%;
+    text-align: center;
+}
+#bt{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
