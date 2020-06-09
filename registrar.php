@@ -12,7 +12,7 @@
         echo (isset($_SESSION['status'])) ? $_SESSION['status'] : '';
     ?>
     <form id='formularios' class='container' action='./admin/usuario/registrar.php' method="POST">
-            <label>E-mail:</label><input id='campos' name='email' type='email' ><br>
+            <label>E-mail:</label><input id='campos' name='email' type='email' required><br>
             <label>Usuário:</label><input id='campos' name='usuario' type='text' required><br>
             <label>Senha:</label><input id='campos' name='senha' type='password' required><br>
             <label>Nome:</label><input id='campos' name='nome' type='text'><br>
