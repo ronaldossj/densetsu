@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ ."/helpers.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -9,7 +13,9 @@
 <body>
     <?php 
         session_start();
-        echo (isset($_SESSION['status'])) ? $_SESSION['status'] : '';
+        if(isset($_SESSION['mensagem'])){
+            exibeAlerta();
+        }
     ?>
     <form id='formularios' class='container' action='./admin/usuario/registrar.php' method="POST">
             <label>E-mail:</label><input id='campos' name='email' type='email' required><br>

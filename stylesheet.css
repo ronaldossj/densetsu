@@ -24,10 +24,23 @@
     padding: 1px;
     line-height: 1;
 }
+.alertEmail {
+    padding: 20px;
+    background-color: #040c5a;
+    color: white;
+    margin-bottom: 6px;
+}
+.alertUsuario {
+    padding: 20px;
+    background-color: #e7f436;
+    color: white;
+    margin-bottom: 6px;
+  }
 .alert {
     padding: 20px;
     background-color: #f44336;
     color: white;
+    margin-bottom: 6px;
   }
   
   .closebtn {

@@ -1,7 +1,7 @@
 <?php
-$alertaSenha = "<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span> Favor, preencher o campo Senha corretamente.</div>";
-$alertaEmail = "<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span> Favor, preencher o campo E-mail corretamente.</div>";
-$alertaUsuario = "<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span> Favor, preencher o campo Usuário corretamente.</div>";
+$alertaSenha = "<div class='alert'><span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> Favor, preencher o campo Senha corretamente.</div>";
+$alertaEmail = "<div class='alertEmail'><span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> Favor, preencher o campo E-mail corretamente.</div>";
+$alertaUsuario = "<div class='alertUsuario'><span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> Favor, preencher o campo Usuário corretamente.</div>";
 $erro = NULL;
 if(!isset($_POST['email']) || empty($_POST['email'])){
     $erro .= $alertaEmail;
@@ -15,7 +15,7 @@ if(!isset($_POST['senha']) || empty($_POST['senha'])){
 session_start();
 
 if(!is_null($erro)){
-    $_SESSION['status'] = $erro;
+    $_SESSION['mensagem'] = $erro;
     header('Location: ../../registrar.php');
     die;
 }
@@ -33,7 +33,7 @@ $query = "INSERT INTO usuarios (email, usuario, senha, nome, ativo) VALUES ('$em
 
 if($db->query($query) == true){
 
-    $_SESSION['status'] = "Cadastro realizado com sucesso.";
+    $_SESSION['mensagem'] = "<div class='alert'><span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> Cadastro realizado com sucesso.</div>";
     header('Location: ../../registrar.php');
 
 }else{
