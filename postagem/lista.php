@@ -35,6 +35,7 @@ if ($result->num_rows > 0) {
                 <?php echo  "<a href=./publicacao.php?id=".$idLink."><p class=mb-1>Continue a ler...</p></a>" ?>
                 <small><span>Autor: <?php echo $postagem['autor']; ?> </spsan> </small>
                 <?php echo "<a href=./editarPostagem.php?id=" . $idLink . "><small> - Editar postagem</small></a>" ?>
+                <?php echo "<a href=./postagemDeletada.php?id=" . $idLink . "><small> - Deletar postagem</small></a>" ?>
             </div>
         </div>
 

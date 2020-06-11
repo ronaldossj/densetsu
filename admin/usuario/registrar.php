@@ -16,7 +16,7 @@ session_start();
 
 if(!is_null($erro)){
     $_SESSION['mensagem'] = $erro;
-    header('Location: ../../registrar.php');
+    header('Location: ../login.php');
     die;
 }
 
@@ -34,7 +34,7 @@ $query = "INSERT INTO usuarios (email, usuario, senha, nome, ativo) VALUES ('$em
 if($db->query($query) == true){
 
     $_SESSION['mensagem'] = "<div class='alert'><span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> Cadastro realizado com sucesso.</div>";
-    header('Location: ../../registrar.php');
+    header('Location: /../../login.php');
 
 }else{
     print_r($db->error);
