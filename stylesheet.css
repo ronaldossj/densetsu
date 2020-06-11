@@ -1,13 +1,14 @@
 .bt {
-    border-radius:4px;
-    display:inline-block;
-    font-family:Verdana;
-    font-weight:bold;
-    font-size:13px;
-    padding:10px 60px;
-    text-decoration:none;
+    border-radius: 4px;
+    display: inline-block;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 10px 60px;
+    text-decoration: none;
     margin-bottom: 3px;
-    }
+}
+
 #formularios {
     margin: 0px auto;
     border: 1px solid #000;
@@ -15,6 +16,7 @@
     width: 20%;
     text-align: center;
 }
+
 #campos {
     margin-left: auto;
     margin-right: auto;
@@ -24,26 +26,29 @@
     padding: 1px;
     line-height: 1;
 }
+
 .alertEmail {
     padding: 20px;
     background-color: #040c5a;
     color: white;
     margin-bottom: 6px;
 }
+
 .alertUsuario {
     padding: 20px;
     background-color: #e7f436;
     color: white;
     margin-bottom: 6px;
-  }
+}
+
 .alert {
     padding: 20px;
     background-color: #f44336;
     color: white;
     margin-bottom: 6px;
-  }
-  
-  .closebtn {
+}
+
+.closebtn {
     margin-left: 15px;
     color: white;
     font-weight: bold;
@@ -52,9 +57,14 @@
     line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
-  }
-  
-  .closebtn:hover {
+}
+
+.closebtn:hover {
     color: black;
-  }
-  
+}
+
+#lista {
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
