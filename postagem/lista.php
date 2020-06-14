@@ -1,7 +1,9 @@
 <?php
 session_start();
 require_once __DIR__ . "/../pdo.php";
-$sql = "SELECT p.id, u.nome as autor, p.dataPublicacao, p.titulo FROM postagens as p LEFT JOIN usuarios as u ON (p.autor=u.id)";
+require_once __DIR__. "/../helpers/dbHelper.php";
+
+$sql = gerarSelect("p.id, u.nome as autor, p.dataPublicacao, p.titulo ", "postagens as p LEFT JOIN usuarios as u ON (p.autor=u.id)", '1=1' );
 $postagens = $db->query($sql)->fetch_all(PDO::FETCH_ASSOC);
 
 //print_r($postagens);
