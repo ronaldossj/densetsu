@@ -1,5 +1,11 @@
 <?php
 require_once __DIR__ . "/helpers.php";
+require_once __DIR__. "/menu.html";
+session_start();
+if(isset($_SESSION['usuario'])){
+    header('Location: ./admin.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +32,7 @@ require_once __DIR__ . "/helpers.php";
         <label>Senha:</label><input id='campos' name='senha' type='password' required><br>
         <label>Nome:</label><input id='campos' name='nome' type='text'><br>
         <button class="btn btn-dark" type='submit' id='botao'> Cadastrar </button>
+        <a href="login.php">Já tenho cadastro</a>
     </form>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

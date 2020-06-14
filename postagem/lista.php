@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once __DIR__. "./../menu.html";
 require_once __DIR__ . "/../db.php";
 $sql = "SELECT p.id, u.nome as autor, p.dataPublicacao, p.titulo FROM postagens as p LEFT JOIN usuarios as u ON (p.autor=u.id)";
 $postagens = [];

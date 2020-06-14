@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once __DIR__. "/../menu.html";
 require_once __DIR__ . "/../db.php";
 $id = $_GET['id'];
 $sql = "SELECT id, titulo, texto FROM postagens WHERE id = '$id'";

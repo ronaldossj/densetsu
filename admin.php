@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__. "/menu.html";
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 

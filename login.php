@@ -1,4 +1,5 @@
 <?php
+    require_once __DIR__. "/menu.html";
     session_start();
     if(isset($_SESSION['usuario'])){
         header('Location: ./admin.php');

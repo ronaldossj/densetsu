@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once __DIR__."/../menu.html";
 require_once __DIR__ . "/../db.php";
 $id = $_GET['id'];
 $sql = "SELECT id, titulo, texto FROM postagens WHERE id = '$id'";
@@ -7,7 +8,7 @@ $result = $db->query($sql);
 if ($result->num_rows > 0) {
     $publicacao = $result->fetch_assoc();
 }
-$sqlComentario = "SELECT comentario, dataComentario, usuario_id FROM comentario WHERE idPostagem = '$id'";
+$sqlComentario = "SELECT comentario, dataComentario, usuario_id, idPostagem FROM comentario WHERE idPostagem = '$id'";
 
 $comentarios = [];
 $resultComentario = $db->query($sqlComentario);
@@ -45,7 +46,7 @@ if ($resultComentario->num_rows > 0) {
     </form>
     <?php foreach ($comentarios as $key => $comentario) : ?>
         <?php 
-        $idLink = $comentarios[$key]['usuario_id'];
+        $idLink = $comentarios[$key]['idPostagem'];
         $data = $comentarios[$key]['dataComentario'];
         ?>
         <div class="container" id='lista'>
