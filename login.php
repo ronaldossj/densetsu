@@ -22,9 +22,9 @@
         }
     ?>
     <form action="./admin/login.php" method="post" id='formularios'>
-    <label>Usuario:</label><br><input type='text' name='usuario' ><br>
-    <label>Senha:</label><br><input type='password'  name='senha' ><br>
-    <button type='submit' class="btn btn-dark" id="bt">Login</button>
+    <label>Usuario:</label><br><input type='text' name='usuario' require><br>
+    <label>Senha:</label><br><input type='password'  name='senha' require><br>
+    <button type='submit' class="btn btn-dark" id="botao">Login</button>
     </form>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
