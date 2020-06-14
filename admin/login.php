@@ -17,17 +17,16 @@ if(!is_null($erro)){
     die;
 }
 
-require_once __DIR__."/../db.php";
+require_once __DIR__."/../pdo.php";
 
 $usuario = $_POST['usuario'];
 $senha = $_POST['senha'];
 $query = "SELECT id, nome, email FROM usuarios WHERE usuario = '$usuario' AND senha = '$senha' AND ativo = 1";
 
-$result = $db->query($query);
+$result = $pdo->query($query)->fetch();
 
-if($result->num_rows > 0){
-    $usuarioSistema = $result->fetch_assoc();
-    $_SESSION['usuario'] = ['id' => $usuarioSistema ['id'], 'nome' => $usuarioSistema['nome'], 'email' => $usuarioSistema['email']];
+if($result){
+    $_SESSION['usuario'] = ['id' => $result ['id'], 'nome' => $result['nome'], 'email' => $result['email']];
     header('Location: ../admin.php');
     die;
 }

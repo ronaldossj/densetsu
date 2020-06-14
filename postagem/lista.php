@@ -1,12 +1,9 @@
 <?php
 session_start();
-require_once __DIR__ . "/../db.php";
+require_once __DIR__ . "/../pdo.php";
 $sql = "SELECT p.id, u.nome as autor, p.dataPublicacao, p.titulo FROM postagens as p LEFT JOIN usuarios as u ON (p.autor=u.id)";
-$postagens = [];
-$result = $db->query($sql);
-if ($result->num_rows > 0) {
-    $postagens = $result->fetch_all(MYSQLI_ASSOC);
-}
+$postagens = $db->query($sql)->fetch_all(PDO::FETCH_ASSOC);
+
 //print_r($postagens);
 ?>
 <!DOCTYPE html>
@@ -22,7 +19,7 @@ if ($result->num_rows > 0) {
 
 <body>
     <?php foreach ($postagens as $key => $postagem) : ?>
-        <?php 
+        <?php
         $idLink = $postagens[$key]['id'];
         $data = $postagens[$key]['dataPublicacao'];
         ?>
@@ -33,7 +30,7 @@ if ($result->num_rows > 0) {
                     <small><?php echo $data; ?></small>
                 </div>
                 <?php echo  "<a href=./publicacao.php?id=".$idLink."><p class=mb-1>Continue a ler...</p></a>" ?>
-                <small><span>Autor: <?php echo $postagem['autor']; ?> </spsan> </small>
+                <small><span>Autor: <?php echo $postagem['autor']; ?> </span> </small>
                 <?php echo "<a href=./editarPostagem.php?id=" . $idLink . "><small> - Editar postagem</small></a>" ?>
                 <?php echo "<a href=./postagemDeletada.php?id=" . $idLink . "><small> - Deletar postagem</small></a>" ?>
             </div>
