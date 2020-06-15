@@ -1,27 +1,15 @@
 <?php
 session_start();
-require_once __DIR__. "./../menu.html";
 require_once __DIR__ . "/../db.php";
-$sql = "SELECT p.id, u.nome as autor, p.dataPublicacao, p.titulo FROM postagens as p LEFT JOIN usuarios as u ON (p.autor=u.id)";
+$sql = "SELECT p.id, u.nome as autor, p.dataPublicacao, p.titulo FROM postagens as p LEFT JOIN usuarios as u ON (p.autor=u.id) ORDER BY p.id DESC";
 $postagens = [];
 $result = $db->query($sql);
 if ($result->num_rows > 0) {
     $postagens = $result->fetch_all(MYSQLI_ASSOC);
 }
-//print_r($postagens);
-?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Postagem</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="/../stylesheet.css" />
-</head>
-
-<body>
+$tituloPagina = "Lista de Postagem";
+require_once __DIR__ . "/../header.php";
+ ?>
     <?php foreach ($postagens as $key => $postagem) : ?>
         <?php 
         $idLink = $postagens[$key]['id'];
@@ -34,7 +22,7 @@ if ($result->num_rows > 0) {
                     <small><?php echo $data; ?></small>
                 </div>
                 <?php echo  "<a href=./publicacao.php?id=".$idLink."><p class=mb-1>Continue a ler...</p></a>" ?>
-                <small><span>Autor: <?php echo $postagem['autor']; ?> </spsan> </small>
+                <small><span>Autor: <?php echo $postagem['autor']; ?> </span> </small>
                 <?php echo "<a href=./editarPostagem.php?id=" . $idLink . "><small> - Editar postagem</small></a>" ?>
                 <?php echo "<a href=./postagemDeletada.php?id=" . $idLink . "><small> - Deletar postagem</small></a>" ?>
             </div>
