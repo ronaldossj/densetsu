@@ -1,8 +1,9 @@
 <?php
 session_start();
 require_once __DIR__. "/../../functions.php";
-require_once __DIR__. "/../../db.php";
+require_once __DIR__. "/../../pdo.php";
 
+$erro = NULL;
 $erro .= valida($_POST['comentario'], "erro");
 $erro .= valida($_POST['idPublicacao'], "erro");
 
@@ -14,9 +15,11 @@ $idUsuario = $_SESSION['usuario']['id'];
 
 $query = "INSERT INTO comentario (comentario, idPostagem, dataComentario, usuario_id) VALUES ('$comentario', '$id', '$dataComentario', '$idUsuario')";
 
-if($db->query($query) == true){
+$inseriu = $pdo->exec($query);
+
+if($inseriu){
     $_SESSION['mensagem'] = "<div class='alert'><span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> Comentário publicado com sucesso.</div>";
     header('Location: ./../publicacao.php?id='.$id);
 }else{
-    print_r($db->error);
+    print_r($pdo->error);
 }
