@@ -1,25 +1,14 @@
 <?php
 session_start();
+$tituloPagina = "Lista de Postagem";
 require_once __DIR__ . "/../pdo.php";
 require_once __DIR__. "/../helpers/dbHelper.php";
 
 $sql = gerarSelect("p.id, u.nome as autor, p.dataPublicacao, p.titulo ", "postagens as p LEFT JOIN usuarios as u ON (p.autor=u.id)", '1=1' );
 $postagens = $db->query($sql)->fetch_all(PDO::FETCH_ASSOC);
 
-//print_r($postagens);
+require_once __DIR__ . "/../header.php";
 ?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Postagem</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="/../stylesheet.css" />
-</head>
-
-<body>
     <?php foreach ($postagens as $key => $postagem) : ?>
         <?php
         $idLink = $postagens[$key]['id'];

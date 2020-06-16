@@ -7,20 +7,18 @@ $alertaSenha = "<div class='alert'><span class='closebtn' onclick=\"this.parentE
 $alertaEmail = "<div class='alertEmail'><span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> Favor, preencher o campo E-mail corretamente.</div>";
 $alertaUsuario = "<div class='alertUsuario'><span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> Favor, preencher o campo Usuário corretamente.</div>";
 $erro = NULL;
-if(!isset($_POST['email']) || empty($_POST['email'])){
-    $erro .= $alertaEmail;
-}
-if(!isset($_POST['usuario']) || empty($_POST['usuario'])){
-    $erro .= $alertaUsuario;
-}
-if(!isset($_POST['senha']) || empty($_POST['senha'])){
-    $erro .= $alertaSenha;
-}
+
+require_once __DIR__ . "/../../functions.php";
+$erro .= valida($_POST['email'], $alertaEmail);
+$erro .= valida($_POST['usuario'], $alertaUsuario);
+$erro .= valida($_POST['senha'], $alertaSenha);
+
+
 session_start();
 
 if(!is_null($erro)){
     $_SESSION['mensagem'] = $erro;
-    header('Location: ../login.php');
+    header('Location: /../../registrar.php');
     die;
 }
 
