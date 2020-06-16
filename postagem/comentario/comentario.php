@@ -14,7 +14,7 @@ $comentario = $_POST['comentario'];
 $dataComentario = date("Y-m-d H:i:s");
 $idUsuario = $_SESSION['usuario']['id'];
 
-$query = gerarInsert('comentario', $query = ["comentario" => "$comentario" , "idPostagem" => "$id", "dataComentario" => "$dataComentario" , "usuario_id" => "$idUsuario"]);
+$query = gerarInsert('comentario', ["comentario" => "$comentario" , "idPostagem" => "$id", "dataComentario" => "$dataComentario" , "usuario_id" => "$idUsuario"]);
 
 $inseriu = $pdo->exec($query);
 

@@ -15,8 +15,7 @@ $dataPublicao = date("Y-m-d H:i:s");
 $id = $_GET['id'];
 require_once __DIR__ . "/../../pdo.php";
 require_once __DIR__ . "/../../helpers/dbHelper.php";
-$query = gerarUpdate('comentario', $query = ["comentario" => "$texto"], "id = $id");
-
+$query = gerarUpdate('comentario', ["comentario" => "$texto"], "id = $id");
 $atualiza = $pdo->exec($query);
 
 if ($atualiza) {

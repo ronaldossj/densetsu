@@ -19,7 +19,8 @@ $texto = $_POST['texto'];
 $dataPublicao = date("Y-m-d H:i:s");
 $id = $_GET['id'];
 
-var_dump($query = gerarUpdate("postagens", $valores=['titulo'=>"$titulo"],"id='$id'"));
+$query = gerarUpdate("postagens", ['titulo'=>"$titulo"],"id='$id'");
+
 $atualizou = $pdo->exec($query);
 
 if ($atualizou) {

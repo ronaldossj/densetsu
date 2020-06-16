@@ -5,6 +5,7 @@ require_once __DIR__ . "/../../helpers/dbHelper.php";
 $id = $_GET['id'];
 $idPagina = $_GET['idPagina'];
 $sql = gerarSelect("id, usuario_id, idPostagem, dataComentario, comentario", "comentario", "id = '$id'");
+
 $comentario = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 
 $tituloPagina = "Editar comentário";

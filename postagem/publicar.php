@@ -16,8 +16,7 @@ $titulo = $_POST['titulo'];
 $texto = $_POST['texto'];
 $autorId = $_SESSION['usuario']['id'];
 $dataPublicao = date("Y-m-d H:i:s");
-
-$query = gerarInsert("postagens", $valores=["titulo"=>"$titulo", "texto"=>"$texto", "autor"=>"$autorId", "dataPublicacao"=>"$dataPublicao"]);
+$query = gerarInsert("postagens", ["titulo"=>"$titulo", "texto"=>"$texto", "autor"=>"$autorId", "dataPublicacao"=>"$dataPublicao"]);
 $inseriu = $pdo->exec($query);
 
 if($inseriu){
