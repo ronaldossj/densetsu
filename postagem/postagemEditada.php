@@ -1,35 +1,30 @@
 <?php
 date_default_timezone_set('America/Sao_Paulo');
 session_start();
+require_once __DIR__ . "/../pdo.php";
+require_once __DIR__ . "/../helpers/dbHelper.php";
+require_once __DIR__ . "/../functions.php";
 $erro = NULL;
 $erro .= valida($_POST['titulo'], "erro");
 $erro .= valida($_POST['texto'], "erro");
 $erro .= valida($_GET['id'], "erro");
 
-
-function valida($dado, $mensagem)
-{
-    if (!isset($dado) || empty($dado)) {
-        return $mensagem;
-    }
-    return NULL;
-}
 if (!is_null($erro)) {
     echo $erro;
 }
 
 $titulo = $_POST['titulo'];
+
 $texto = $_POST['texto'];
 $dataPublicao = date("Y-m-d H:i:s");
 $id = $_GET['id'];
-$query = "UPDATE postagens SET titulo='$titulo', texto='$texto' WHERE id='$id'";
-print_r($query);
-require_once __DIR__ . "/../db.php";
 
+var_dump($query = gerarUpdate("postagens", $valores=['titulo'=>"$titulo"],"id='$id'"));
+$atualizou = $pdo->exec($query);
 
-if ($db->query($query) == true) {
+if ($atualizou) {
 
     header('Location: ./lista.php');
 } else {
-    print_r($db->error);
+    print_r($pdo->error);
 }

@@ -4,7 +4,7 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 session_start();
 
-require_once __DIR__ . "/../db.php";
+require_once __DIR__ . "/../pdo.php";
 require_once __DIR__ . "/../helpers/dbHelper.php";
 
 if(!isset($_GET['id']) && empty($_GET['id'])){
@@ -12,19 +12,13 @@ if(!isset($_GET['id']) && empty($_GET['id'])){
     die();
 }
 $id = $_GET['id'];
+//Consulta no banco para trazer Publicações
 $sql = gerarSelect("id, titulo, texto", 'postagens', "id = '$id'");
-var_dump($sql);
-$result = $db->query($sql);
-if ($result->num_rows > 0) {
-    $publicacao = $result->fetch_assoc();
-}
-$sqlComentario = "SELECT c.id, comentario, dataComentario, usuario_id, idPostagem, u.nome as autorComentario FROM comentario as c LEFT JOIN usuarios as u ON (c.usuario_id = u.id) WHERE idPostagem = '$id'";
+$publicacao = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 $tituloPagina = $publicacao['titulo'];
-$comentarios = [];
-$resultComentario = $db->query($sqlComentario);
-if ($resultComentario->num_rows > 0) {
-    $comentarios = $resultComentario->fetch_all(MYSQLI_ASSOC);
-}
+//Consulta no banco para trazer comentários
+$sqlComentario = gerarSelect("c.id, comentario, dataComentario, usuario_id, idPostagem, u.nome as autorComentario","comentario as c LEFT JOIN usuarios as u ON (c.usuario_id = u.id)","idPostagem = '$id'");
+$comentarios = $pdo->query($sqlComentario)->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <?php require_once __DIR__ . "/../header.php"; ?>
