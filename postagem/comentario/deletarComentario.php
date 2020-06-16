@@ -17,7 +17,8 @@ if (!is_null($erro)) {
 $idPagina = $_GET['idPagina'];
 $id = $_GET['id'];
 require_once __DIR__ . "/../../pdo.php";
-$query = "DELETE FROM comentario WHERE id='$id'";
+require_once __DIR__ . "/../../helpers/dbHelper.php";
+$query = gerarDelete("comentario", "id='$id'");
 $deletou = $pdo->exec($query);
 
 if ($deletou) {

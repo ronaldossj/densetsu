@@ -17,10 +17,11 @@ if(!empty($erro)){
 }
 
 require_once __DIR__."/../pdo.php";
+require_once __DIR__."/../helpers/dbHelper.php";
 
 $usuario = $_POST['usuario'];
 $senha = $_POST['senha'];
-$query = "SELECT id, nome, email FROM usuarios WHERE usuario = '$usuario' AND senha = '$senha' AND ativo = 1";
+$query = gerarSelect("id, nome, email", "usuarios", "usuario = '$usuario' AND senha = '$senha' AND ativo = 1");
 
 $result = $pdo->query($query)->fetch();
 

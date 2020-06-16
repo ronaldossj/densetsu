@@ -17,9 +17,8 @@ $sql = gerarSelect("id, titulo, texto", 'postagens', "id = '$id'");
 $publicacao = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 $tituloPagina = $publicacao['titulo'];
 //Consulta no banco para trazer comentários
-$sqlComentario = "SELECT c.id, comentario, dataComentario, usuario_id, idPostagem, u.nome as autorComentario FROM comentario as c LEFT JOIN usuarios as u ON (c.usuario_id = u.id) WHERE idPostagem = '$id'";
+$sqlComentario = gerarSelect("c.id, comentario, dataComentario, usuario_id, idPostagem, u.nome as autorComentario","comentario as c LEFT JOIN usuarios as u ON (c.usuario_id = u.id)","idPostagem = '$id'");
 $comentarios = $pdo->query($sqlComentario)->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <?php require_once __DIR__ . "/../header.php"; ?>

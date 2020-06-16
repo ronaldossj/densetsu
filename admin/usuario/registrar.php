@@ -16,7 +16,9 @@ $erro .= valida($_POST['senha'], $alertaSenha);
 
 session_start();
 
-if(!empty($erro)){
+
+if (!empty($erro)) {
+
     $_SESSION['mensagem'] = "<div class='alert'><span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>Não foi possivel cadastrar</div>";
     header('Location: /../../registrar.php');
     die;
@@ -29,16 +31,16 @@ $nome = $_POST['nome'];
 $ativo = 1;
 
 
-require_once __DIR__."/../../pdo.php";
+require_once __DIR__ . "/../../pdo.php";
+require_once __DIR__ . "/../../helpers/dbHelper.php";
 
-$query = "INSERT INTO usuarios (email, usuario, senha, nome, ativo) VALUES ('$email', '$usuario', '$senha', '$nome', $ativo);";
+$query = gerarInsert('usuarios', $valores = ["email" => "$email", "usuario" => "$usuario", "senha" => "$senha", "nome" => "$nome", "ativo" => "$ativo"]);
 
 $inseriu = $pdo->exec($query);
-if($inseriu){
+if ($inseriu) {
 
     $_SESSION['mensagem'] = "<div class='alert'><span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> Cadastro realizado com sucesso.</div>";
     header('Location: /../../login.php');
-
-}else{
+} else {
     print_r($pdo->errorInfo());
 }

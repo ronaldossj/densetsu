@@ -15,11 +15,11 @@ function gerarInsert($tabela, $fildsValues)
         $campos = '';
         $valores = '';
         foreach ($fildsValues as $key => $value) {
-            $campos .= "{$key} ,";
-            $valores .= "'{$value}' ,";
+            $campos .= "{$key}, ";
+            $valores .= "'{$value}', ";
         }
-        $campos = substr($campos, 0, -1);
-        $valores = substr($valores, 0, -1);
+        $campos = substr($campos, 0, -2);
+        $valores = substr($valores, 0, -2);
 
         $query = "INSERT INTO {$tabela} ({$campos}) VALUES ({$valores})";
 
@@ -46,12 +46,8 @@ function gerarUpdate($tabela, $fildsValues, $where)
         }
         $camposValores = substr($camposValores, 0, -1);
 
-        $query = "UPDATE {$tabela} SET ($camposValores) WHERE {$where}";
+        $query = "UPDATE {$tabela} SET {$camposValores} WHERE {$where}";
         return $query;
     }
     return null;
 }
-
-$funcoes = ['soma' => function (){
-
-}];

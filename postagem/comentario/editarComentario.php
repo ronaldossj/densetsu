@@ -1,9 +1,11 @@
 <?php
 session_start();
 require_once __DIR__ . "/../../pdo.php";
+require_once __DIR__ . "/../../helpers/dbHelper.php";
 $id = $_GET['id'];
 $idPagina = $_GET['idPagina'];
-$sql = "SELECT id, usuario_id, idPostagem, dataComentario, comentario FROM comentario WHERE id = '$id'";
+$sql = gerarSelect("id, usuario_id, idPostagem, dataComentario, comentario", "comentario", "id = '$id'");
+
 $comentario = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 
 $tituloPagina = "Editar comentário";

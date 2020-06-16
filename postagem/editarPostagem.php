@@ -1,8 +1,9 @@
 <?php
 session_start();
 require_once __DIR__ . "/../pdo.php";
+require_once __DIR__ . "/../helpers/dbHelper.php";
 $id = $_GET['id'];
-$sql = "SELECT id, titulo, texto FROM postagens WHERE id = '$id'";
+$sql = gerarSelect("id, titulo, texto","postagens","id = '$id'");
 $publicacao = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 $tituloPagina = "Editar: " . $publicacao['titulo'];
 

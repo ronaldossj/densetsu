@@ -2,6 +2,7 @@
 session_start();
 require_once __DIR__. "/../../functions.php";
 require_once __DIR__. "/../../pdo.php";
+require_once __DIR__. "/../../helpers/dbHelper.php";
 
 $erro = NULL;
 $erro .= valida($_POST['comentario'], "erro");
@@ -13,7 +14,7 @@ $comentario = $_POST['comentario'];
 $dataComentario = date("Y-m-d H:i:s");
 $idUsuario = $_SESSION['usuario']['id'];
 
-$query = "INSERT INTO comentario (comentario, idPostagem, dataComentario, usuario_id) VALUES ('$comentario', '$id', '$dataComentario', '$idUsuario')";
+$query = gerarInsert('comentario', ["comentario" => "$comentario" , "idPostagem" => "$id", "dataComentario" => "$dataComentario" , "usuario_id" => "$idUsuario"]);
 
 $inseriu = $pdo->exec($query);
 

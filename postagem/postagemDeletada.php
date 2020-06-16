@@ -1,24 +1,17 @@
 <?php
 date_default_timezone_set('America/Sao_Paulo');
 session_start();
+require_once __DIR__."/../functions.php";
+require_once __DIR__ . "/../pdo.php";
+require_once __DIR__ . "/../helpers/dbHelper.php";
 $erro = NULL;
 $erro .= valida($_GET['id'], "erro");
 
-
-function valida($dado, $mensagem)
-{
-    if (!isset($dado) || empty($dado)) {
-        return $mensagem;
-    }
-    return NULL;
-}
 if (!is_null($erro)) {
     echo $erro;
 }
-
 $id = $_GET['id'];
-require_once __DIR__ . "/../pdo.php";
-$query = "DELETE FROM postagens WHERE id='$id'";
+$query = gerarDelete("postagens", "id='$id'");
 $deletou = $pdo->exec($query);
 
 if ($deletou) {
