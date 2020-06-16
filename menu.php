@@ -6,15 +6,22 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/admin.php">Painel de Administrador</a>
+            <?php
+            if ($tituloPagina == "Página de Login" || $tituloPagina == "Página de Cadastro") {
+
+            } else {
+            echo "<li class='nav-item'>
+                <a class='nav-link' href='http://localhost:8080/admin.php'>Painel de Administrador</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/postagem/postagem.php">Nova postagem</a>
+            <li class='nav-item'>
+                <a class='nav-link' href='http://localhost:8080/postagem/postagem.php'>Nova postagem</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8080/postagem/lista.php">Lista de Postagens</a>
-            </li>
+            <li class='nav-item'>
+                <a class='nav-link' href='http://localhost:8080/postagem/lista.php'>Lista de Postagens</a>
+            </li>";
+            }
+
+            ?>
         </ul>
         <?php
         if ($tituloPagina == "Página de Login") {
