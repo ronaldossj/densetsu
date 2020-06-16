@@ -58,7 +58,7 @@ if ($resultComentario->num_rows > 0) {
                 </div>
                 <small><span>Autor: <?php echo $comentario['autorComentario']; ?> </spsan> </small>
                 <?php echo "<a href=./comentario/editarComentario.php?id=" . $idComentario . "&idPagina=".$id."><small> - Editar comentário</small></a>" ?>
-                <?php echo "<a href=./comentario/editarComentario.php?id=" . $idComentario . "&idPagina=".$id."><small> - Deletar comentário</small></a>" ?>
+                <?php echo "<a href=./comentario/deletarComentario.php?id=" . $idComentario . "&idPagina=".$id."><small> - Deletar comentário</small></a>" ?>
             </div>
         </div>
 
