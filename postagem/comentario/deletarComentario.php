@@ -4,7 +4,6 @@ session_start();
 $erro = NULL;
 $erro .= valida($_GET['id'], "erro");
 
-
 function valida($dado, $mensagem)
 {
     if (!isset($dado) || empty($dado)) {
@@ -17,14 +16,13 @@ if (!is_null($erro)) {
 }
 $idPagina = $_GET['idPagina'];
 $id = $_GET['id'];
+require_once __DIR__ . "/../../pdo.php";
 $query = "DELETE FROM comentario WHERE id='$id'";
-print_r($query);
-require_once __DIR__ . "/../../db.php";
+$deletou = $pdo->exec($query);
 
+if ($deletou) {
 
-if ($db->query($query) == true) {
-
-    header('Location: ./../publicacao.php?id='.$idPagina);
+    header('Location: ./../publicacao.php?id=' . $idPagina);
 } else {
-    print_r($db->error);
+    print_r($pdo->error);
 }

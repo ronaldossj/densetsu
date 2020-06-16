@@ -16,8 +16,8 @@ $erro .= valida($_POST['senha'], $alertaSenha);
 
 session_start();
 
-if(!is_null($erro)){
-    $_SESSION['mensagem'] = $erro;
+if(!empty($erro)){
+    $_SESSION['mensagem'] = "<div class='alert'><span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>Não foi possivel cadastrar</div>";
     header('Location: /../../registrar.php');
     die;
 }

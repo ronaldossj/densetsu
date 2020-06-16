@@ -17,14 +17,12 @@ if (!is_null($erro)) {
 }
 
 $id = $_GET['id'];
+require_once __DIR__ . "/../pdo.php";
 $query = "DELETE FROM postagens WHERE id='$id'";
-print_r($query);
-require_once __DIR__ . "/../db.php";
+$deletou = $pdo->exec($query);
 
-
-if ($db->query($query) == true) {
-
+if ($deletou) {
     header('Location: ./lista.php');
 } else {
-    print_r($db->error);
+    print_r($pdo->error);
 }

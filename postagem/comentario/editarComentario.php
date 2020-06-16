@@ -1,13 +1,11 @@
 <?php
 session_start();
-require_once __DIR__ . "/../../db.php";
+require_once __DIR__ . "/../../pdo.php";
 $id = $_GET['id'];
 $idPagina = $_GET['idPagina'];
 $sql = "SELECT id, usuario_id, idPostagem, dataComentario, comentario FROM comentario WHERE id = '$id'";
-$result = $db->query($sql);
-if ($result->num_rows > 0) {
-    $comentario = $result->fetch_assoc();
-}
+$comentario = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+
 $tituloPagina = "Editar comentário";
 
 require_once __DIR__ . "/../../header.php"; 

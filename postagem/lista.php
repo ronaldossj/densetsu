@@ -5,7 +5,8 @@ require_once __DIR__ . "/../pdo.php";
 require_once __DIR__. "/../helpers/dbHelper.php";
 
 $sql = gerarSelect("p.id, u.nome as autor, p.dataPublicacao, p.titulo ", "postagens as p LEFT JOIN usuarios as u ON (p.autor=u.id)", '1=1' );
-$postagens = $db->query($sql)->fetch_all(PDO::FETCH_ASSOC);
+$postagens = $pdo->query($sql)->fetchAll(PDO::FETCH_BOTH);
+
 
 require_once __DIR__ . "/../header.php";
 ?>

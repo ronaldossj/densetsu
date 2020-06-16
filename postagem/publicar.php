@@ -21,15 +21,13 @@ $titulo = $_POST['titulo'];
 $texto = $_POST['texto'];
 $autorId = $_SESSION['usuario']['id'];
 $dataPublicao = date("Y-m-d H:i:s");
+require_once __DIR__. "/../pdo.php";
 $query = "INSERT INTO postagens (titulo, texto, autor, dataPublicacao) VALUES ('$titulo', '$texto', $autorId, '$dataPublicao')";
+$inseriu = $pdo->exec($query);
 
-require_once __DIR__. "/../db.php";
-
-
-if($db->query($query) == true){
-
+if($inseriu){
     header('Location: ../admin.php');
 
 }else{
-    print_r($db->error);
+    print_r($pdo->error);
 }
