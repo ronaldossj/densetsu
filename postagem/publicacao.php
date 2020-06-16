@@ -1,9 +1,19 @@
 <?php
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 session_start();
 
 require_once __DIR__ . "/../db.php";
+require_once __DIR__ . "/../helpers/dbHelper.php";
+
+if(!isset($_GET['id']) && empty($_GET['id'])){
+    echo 'erro !';
+    die();
+}
 $id = $_GET['id'];
-$sql = "SELECT id, titulo, texto FROM postagens WHERE id = '$id'";
+$sql = gerarSelect("id, titulo, texto", 'postagens', "id = '$id'");
+var_dump($sql);
 $result = $db->query($sql);
 if ($result->num_rows > 0) {
     $publicacao = $result->fetch_assoc();

@@ -1,17 +1,16 @@
 <?php
 session_start();
-require_once __DIR__ . "/../db.php";
-$sql = "SELECT p.id, u.nome as autor, p.dataPublicacao, p.titulo FROM postagens as p LEFT JOIN usuarios as u ON (p.autor=u.id) ORDER BY p.id DESC";
-$postagens = [];
-$result = $db->query($sql);
-if ($result->num_rows > 0) {
-    $postagens = $result->fetch_all(MYSQLI_ASSOC);
-}
 $tituloPagina = "Lista de Postagem";
+require_once __DIR__ . "/../pdo.php";
+require_once __DIR__. "/../helpers/dbHelper.php";
+
+$sql = gerarSelect("p.id, u.nome as autor, p.dataPublicacao, p.titulo ", "postagens as p LEFT JOIN usuarios as u ON (p.autor=u.id)", '1=1' );
+$postagens = $db->query($sql)->fetch_all(PDO::FETCH_ASSOC);
+
 require_once __DIR__ . "/../header.php";
- ?>
+?>
     <?php foreach ($postagens as $key => $postagem) : ?>
-        <?php 
+        <?php
         $idLink = $postagens[$key]['id'];
         $data = $postagens[$key]['dataPublicacao'];
         ?>
