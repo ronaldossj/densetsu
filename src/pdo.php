@@ -1,7 +1,7 @@
 <?php
 
 // Conexao com MySQL via PDO
-$db_dsn = 'mysql:host=127.0.0.1;port=3306;dbname=densetsu';
+$db_dsn = 'mysql:mysql.local.com.br;port=4000;dbname=densetsu';
 $db_usuario = 'root';
 $db_senha = 'root';
 $db_opcoes = array(

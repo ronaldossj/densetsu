@@ -1,0 +1,20 @@
+apache:
+ build: .
+ ports:
+  - "8080:80"
+ volumes:
+  - ./src:/var/www/html
+ extra_hosts:
+  - "densetsu.local.com.br:127.0.0.1"
+mysql-local:
+ image: mysql:5.6
+ volumes:
+  - ./mysql:/var/lib/mysql
+  - ./home:/home
+ ports:
+  - "4000:3306"
+ extra_hosts:
+  - "mysql.local.com.br:127.0.0.1"
+ environment:
+  - MYSQL_ROOT_PASSWORD=root
+  - MYSQL_DATABASE=densetsu
