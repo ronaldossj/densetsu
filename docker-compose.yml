@@ -1,20 +1,34 @@
-apache:
- build: .
- ports:
-  - "8080:80"
- volumes:
-  - ./src:/var/www/html
- extra_hosts:
+version: "3"
+
+services:
+ apache:
+  build: .
+  extra_hosts:
   - "densetsu.local.com.br:127.0.0.1"
-mysql-local:
- image: mysql:5.6
- volumes:
-  - ./mysql:/var/lib/mysql
-  - ./home:/home
- ports:
-  - "4000:3306"
- extra_hosts:
-  - "mysql.local.com.br:127.0.0.1"
- environment:
-  - MYSQL_ROOT_PASSWORD=root
-  - MYSQL_DATABASE=densetsu
+  volumes:
+   - ./src:/var/www/html
+  ports:
+   - "8080:80"
+  networks:
+   - default
+   - report_default
+ mysql-local:
+  image: mysql:5.6
+  volumes:
+   - ./mysql:/var/lib/mysql
+   - ./home:/home
+   - ./mysql-dump:/docker-entrypoint-initdb.d
+  ports:
+   - "4000:3306"
+  extra_hosts:
+   - "mysql.local.com.br:127.0.0.1"
+  environment:
+   - MYSQL_ROOT_PASSWORD=root
+   - MYSQL_DATABASE=densetsu
+  networks:
+   - default
+   - report_default
+
+networks:
+ report_default:
+  external: true
